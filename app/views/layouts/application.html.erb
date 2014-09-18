@@ -7,8 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">UltraBook</a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
+
+  <section class="top-bar-section">
+    <ul class="left">
+      <li><%= link_to "All Statuses", statuses_path %></li>
+    </ul>
+  </section>
+</nav>
+<div class="row">
 
 <%= yield %>
+
+
+</div>
 
 </body>
 </html>

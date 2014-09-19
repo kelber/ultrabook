@@ -1,15 +1,20 @@
 class StatusesController < ApplicationController
   before_action :set_status, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authenticate_user!, only: [:new, :create]
+
+
   # GET /statuses
   # GET /statuses.json
   def index
+    
     @statuses = Status.all
   end
 
   # GET /statuses/1
   # GET /statuses/1.json
   def show
+   @statuses = Status.all
   end
 
   # GET /statuses/new
@@ -24,7 +29,9 @@ class StatusesController < ApplicationController
   # POST /statuses
   # POST /statuses.json
   def create
+
     @status = Status.new(status_params)
+
 
     respond_to do |format|
       if @status.save
@@ -69,6 +76,6 @@ class StatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def status_params
-      params.require(:status).permit(:name, :content)
+      params.require(:status).permit(:content, :user_id)
     end
 end

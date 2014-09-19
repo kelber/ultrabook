@@ -5,33 +5,67 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
   <nav class="top-bar" data-topbar>
+  <div class="row">
     <ul class="title-area">
       <li class="name">
-        <h1><a href="#">UltraBook</a></h1>
+        <h1><%= link_to "UltraBook", root_path %></h1>
       </li>
       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
+ <section class="top-bar-section">
+        <ul class="left">
+          <li><%= link_to "All Statuses", feed_path %></li>
+        </ul>
 
-  <section class="top-bar-section">
-    <ul class="left">
-      <li><%= link_to "All Statuses", statuses_path %></li>
-    </ul>
+    <ul class="nav pull-right">
+      <% if user_signed_in? %>
+    <li><%= link_to current_user.id, edit_user_registration_path %></li>
+    <li><%= link_to "Log Out", logout_path %></li>
+    <% else %>
+    <li><%= link_to "Register", register_path %></li>
+    <li><%= link_to "Login", login_path %></li>
+    <% end %>
+     </ul>
   </section>
+</div>
+
 </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+</div>
+</div>
+<div class="container">
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+  <button class="close" data-dismiss="alert">x</button>
+  <%= flash[:notice] %>
+  </div>
+  <% end %>
+  <div class="container">
+<% if flash[:alert] %>
+  <div class="alert alert-warning">
+  <button class="close" data-dismiss="alert">x</button>
+  <%= flash[:alert] %>
+  </div>
+  <% end %>
 
 
 
-<div class="row">
+
 
 <%= yield %>
 
 
-</div>
+
+
+
+<script src="/app/assets/javascripts/jquery.js"></script>
+  <script src="/app/assets/javascripts/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
 
 </body>
 </html>

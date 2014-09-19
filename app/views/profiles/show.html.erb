@@ -1,0 +1,17 @@
+<h1> Meu Profile</h1>
+	<p><%= @user_id %></p>
+
+<% if @statuses %>
+	<% @statuses.each do |status| %>
+
+	<div class="panel">
+	<%= status.content %><br>
+	<%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
+	</div>
+
+	<% end %>
+
+	<% else %>
+	<%= root_path %>
+	<% end %>
+
